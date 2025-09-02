@@ -11,5 +11,4 @@ class IsAuthorOrAdmin(BasePermission):
         user = request.user
         if not user.is_authenticated:
             return False
-        # برای Post و Comment هر دو author دارد
         return getattr(obj, 'author', None) == user or user.is_staff

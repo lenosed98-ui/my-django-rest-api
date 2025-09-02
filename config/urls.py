@@ -31,23 +31,12 @@ router.register(r'posts', PostViewSet, basename='post')
 router.register(r'comments', CommentViewSet, basename='comment')
 
 urlpatterns = [
-      path('', home, name='home'),
+    path('', home, name='home'),
     path('admin/', admin.site.urls),
-
-    # Auth
     path('api/auth/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/auth/register/', RegisterView.as_view(), name='register'),
-
-    # Routers (posts, categories, comments via ViewSets)
     path('api/', include(router.urls)),
-
-    # Comments extra endpoints
     path("posts/<int:post_id>/comments/", CommentListCreateView.as_view(), name="post-comments"),
     path('api/comments-list-create/', CommentListCreateView.as_view(), name='comment-list-create'),
 ]
-
-#user: mehran12  
-# :passs: mySecurePass#123 
-# refresh token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc1NjgzNDg2NiwiaWF0IjoxNzU2NzQ4NDY2LCJqdGkiOiIxODZjOTZhNzE1ZDc0MmE2OWMwYzlhNWIwMjljNGM4YyIsInVzZXJfaWQiOiI0In0.0-q91QbIEmLKWP1WGvcYD-NU9QzfwaYVaqZ7Zu0SP24"
-
